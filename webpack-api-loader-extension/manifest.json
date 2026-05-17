@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Webpack API Loader",
+  "version": "1.0.0",
+  "description": "Discover webpack chunks, fetch lazy bundles, and extract API endpoints for authorized security testing.",
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "pageProbe.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "action": {
+    "default_title": "Webpack API Loader",
+    "default_popup": "popup.html"
+  }
+}

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Webpack API Loader</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="header">
+        <div>
+          <h1>Webpack API Loader</h1>
+          <p id="pageLabel">等待当前标签页</p>
+        </div>
+        <span id="statusBadge" class="badge">Ready</span>
+      </header>
+
+      <section class="controls" aria-label="扫描控制">
+        <button id="scanBtn" class="primary">扫描并加载分包</button>
+        <button id="refreshBtn" title="刷新结果">刷新</button>
+        <button id="clearBtn" title="清空本页结果">清空</button>
+      </section>
+
+      <section class="options" aria-label="扫描选项">
+        <label>
+          <span>深度</span>
+          <select id="depthSelect">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+          </select>
+        </label>
+        <label class="check">
+          <input id="sourceMapToggle" type="checkbox">
+          <span>包含 sourcemap</span>
+        </label>
+        <label class="check danger">
+          <input id="injectToggle" type="checkbox">
+          <span>注入脚本到页面</span>
+        </label>
+      </section>
+
+      <section class="stats" aria-label="结果统计">
+        <div><strong id="chunkCount">0</strong><span>JS 包</span></div>
+        <div><strong id="loadedCount">0</strong><span>已加载</span></div>
+        <div><strong id="apiCount">0</strong><span>接口</span></div>
+        <div><strong id="findingCount">0</strong><span>线索</span></div>
+      </section>
+
+      <nav class="tabs" aria-label="结果分类">
+        <button class="tab active" data-tab="apis">接口</button>
+        <button class="tab" data-tab="chunks">分包</button>
+        <button class="tab" data-tab="findings">线索</button>
+        <button class="tab" data-tab="logs">日志</button>
+      </nav>
+
+      <section id="panel" class="panel" aria-live="polite"></section>
+
+      <footer class="footer">
+        <button id="copyBtn">复制接口</button>
+        <button id="copyPureBtn">复制纯接口</button>
+        <button id="exportBtn">导出 JSON</button>
+      </footer>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
